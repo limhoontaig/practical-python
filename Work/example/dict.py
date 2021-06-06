@@ -7,7 +7,11 @@ f.close
 headers = next(rows)
 total_cost=0
 for row in rows:
-    t = (row[0],int(row[1]),float(row[2]))
-    cost = t[1]*t[2]
+    d = {
+        'name':row[0],
+        'shares':int(row[1]),
+        'price':float(row[2])
+    }
+    cost = d['shares']*d['price']
     total_cost += cost
-print('Tuple method:', f'{total_cost:0.2f}')
+print('Dictionary method:', f'{total_cost:0.2f}')
