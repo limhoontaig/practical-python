@@ -8,8 +8,9 @@ def portfolio_cost(filename):
     headers = next(rows)
     print(headers)
     for row in rows:
-        print(row)
-        total_cost += int(row[1]) * float(row[2])
+        t = (row[0], int(row[1]), float(row[2]))
+        print(t)
+        total_cost += t[1] * t[2]
     f.close()
     return total_cost
 
