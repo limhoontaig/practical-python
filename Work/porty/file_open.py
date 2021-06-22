@@ -7,6 +7,7 @@ def portfolio_cost(filename):
     rows = csv.reader(f)
     headers = next(rows)
     print(headers)
+    names = []
     for row in rows:
         d = {
             'name' : row[0],
@@ -15,8 +16,13 @@ def portfolio_cost(filename):
         }
         print(d)
         total_cost += d['shares'] * d['price']
+        names.append(row[0])
     f.close()
-    return total_cost
+    return total_cost, names
+
+def unique(names):
+    unique = set(names)
+    return unique
 
 
 if len(sys.argv) == 2:
@@ -24,5 +30,9 @@ if len(sys.argv) == 2:
 else:
     filename = 'work/data/portfolio.csv'
 
-cost = portfolio_cost('work/data/portfolio.csv')
-print('Total cost : $',cost)
+cost_names = portfolio_cost('work/data/portfolio.csv')
+print('Total cost : $',cost_names[0])
+
+unique_names = unique(cost_names[1])
+print(cost_names[1])
+print(unique_names)
